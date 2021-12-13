@@ -3,13 +3,18 @@ plugins {
     id 'kotlin-android'
 }
 
+/**
+ * All dependencies are managed from here..
+ */
+apply from: '../dependencies.gradle'
+
 android {
-    compileSdk 31
+    compileSdk core_common_dependencies.androidCompileSdkVersion
 
     defaultConfig {
         applicationId "com.hasankcay.coreproject"
-        minSdk 21
-        targetSdk 31
+        minSdk core_common_dependencies.androidMinSdkVersion
+        targetSdk core_common_dependencies.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -33,11 +38,18 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation core_common_dependencies.ktx
+    implementation core_common_dependencies.appCompat
+    implementation core_common_dependencies.material
+
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation core_common_dependencies.navigationFragment
+    implementation core_common_dependencies.navigationUi
+
+
+    api project(':base')
 }

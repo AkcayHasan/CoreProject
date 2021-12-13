@@ -19,6 +19,9 @@ ext {
     rxjava2Version = '2.2.4'
     rxandroidVersion = '2.1.0'
 
+    //Navigation
+    nav_version = "2.3.5"
+
     //Coroutines
     coroutineVersion = "1.5.2"
 
@@ -81,6 +84,8 @@ ext {
             videoCache              : "com.danikula:videocache:$videoCache",
             material                : "com.google.android.material:$materialVersion",
             glide                   : "com.github.bumptech.glide:glide:$glideVersion",
+            navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+            navigationUi            : "androidx.navigation:navigation-ui-ktx:$nav_version",
             dataStore               : "androidx.datastore:datastore-preferences:$dataStoreVersion",
             picasso                 : "com.squareup.picasso:picasso:$picassoVersion",
             matisse                 : "com.zhihu.android:matisse:$matisse",

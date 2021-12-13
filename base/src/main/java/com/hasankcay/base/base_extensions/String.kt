@@ -1,4 +1,4 @@
-package com.hasankcay.base.base_utils
+package com.hasankcay.base.base_extensions
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

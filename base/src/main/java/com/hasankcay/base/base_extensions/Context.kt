@@ -1,23 +1,20 @@
-/**
- * Copyright (C) 2020 Fernando Cejas Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.hasankcay.base.base_extensions
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.widget.Toast
+import com.hasankcay.base.base_utils.Popup
+import com.hasankcay.base.base_utils.PopupListener
+import com.hasankcay.base.base_utils.PopupModel
 
 val Context.connectivityManager: ConnectivityManager
     get() =
         this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+fun Context.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, msg, duration).show()
+}
+
+fun Context.showPopup(model: PopupModel, listener: PopupListener? = null) {
+    Popup(this, model, listener).show()
+}
