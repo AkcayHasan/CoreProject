@@ -28,13 +28,17 @@ class CommonUtils {
          * Used to get unique DeviceId
          */
         @SuppressLint("HardwareIds")
-        fun getUdid(context: Context): String? {
+        fun getUdId(context: Context): String? {
             return Settings.Secure.getString(
                 context.contentResolver,
                 Settings.Secure.ANDROID_ID
             )
         }
 
-
+        inline fun<T> justTry(block: () -> T) = try {
+            block()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

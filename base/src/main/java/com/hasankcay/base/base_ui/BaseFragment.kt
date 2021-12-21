@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collectLatest
 
-@ExperimentalCoroutinesApi
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     private var baseActivity: BaseActivity? = null
@@ -41,11 +38,11 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
     private fun subscribeObservers() {
         lifecycleScope.launchWhenStarted {
-            viewModel.loading.collectLatest {
+            viewModel.loading.observe(viewLifecycleOwner) {
                 if (it) baseActivity?.showLoading() else baseActivity?.hideLoading()
             }
 
-            viewModel.error.collectLatest {
+            viewModel.error.observe(viewLifecycleOwner) {
                 baseActivity?.showError(it)
             }
         }

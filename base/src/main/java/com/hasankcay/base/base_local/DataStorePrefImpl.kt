@@ -16,21 +16,22 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
-class DataStorePrefImpl
-@Inject constructor(
+class DataStorePrefImpl @Inject constructor(
     context: Context,
     private val gson: Gson
 ) : IDataStorePref {
+
+    companion object {
+        private val Context.dataStore by preferencesDataStore(
+            name = "local_helper"
+        )
+    }
 
     private val AUTHORIZATON_PREF_HELPER = stringPreferencesKey("authorizationPref")
     private val LANGUAGE_PREF_HELPER = stringPreferencesKey("languagePref")
     private val USER_ID_PREF_HELPER = stringPreferencesKey("userIdPref")
     private val PREF_KEY_LOCATION = stringPreferencesKey("PREF_KEY_LOCATION")
     private val PREF_KEY_PHONE_NUMBER = stringPreferencesKey("PREF_KEY_PHONE_NUMBER")
-
-    private val Context.dataStore by preferencesDataStore(
-        name = "local_helper"
-    )
 
     var dataStore: DataStore<Preferences> = context.dataStore
 
