@@ -1,9 +1,12 @@
 package com.hasankcay.base.base_network.module
 
+import com.hasankcay.base.base_network.HeaderInterceptor
+import com.hasankcay.base.base_network.RetrofitBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -12,8 +15,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun retrofitInstance() {
-
+    fun retrofitInstance(
+        retrofitBuilder: RetrofitBuilder,
+        headerInterceptor: HeaderInterceptor
+    ): Retrofit {
+        return retrofitBuilder.addInterceptors(headerInterceptor).build()
     }
 
 }
