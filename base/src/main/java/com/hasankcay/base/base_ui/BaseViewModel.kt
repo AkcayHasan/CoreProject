@@ -14,14 +14,11 @@ class BaseViewModel : ViewModel() {
     private val _loading = SingleLiveEvent<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _error = SingleLiveEvent<String>()
-    val error: LiveData<String> = _error
-
     private val _navigation = SingleLiveEvent<NavigationCommand>()
     val navigation: LiveData<NavigationCommand> = _navigation
 
-    private val _popup = SingleLiveEvent<PopupModel>()
-    val popup: LiveData<PopupModel> = _popup
+    private val _failurePopup = SingleLiveEvent<PopupModel>()
+    val failurePopup: LiveData<PopupModel> = _failurePopup
 
     fun handleFailure(failure: Failure) {
         val message = when(failure) {
@@ -33,7 +30,7 @@ class BaseViewModel : ViewModel() {
             is Failure.TimeOutError -> "Request Timed Out"
             else -> failure.message ?: failure.toString()
         }
-        _popup.value = PopupModel(message = message)
+        _failurePopup.value = PopupModel(message = message)
     }
 
     fun navigate(direction: NavDirections) {
@@ -46,6 +43,10 @@ class BaseViewModel : ViewModel() {
 
     fun navigate(model: PopupModel, listener: PopupListener?) {
         _navigation.value = NavigationCommand.Popup(model, listener)
+    }
+
+    fun navigateBack() {
+        _navigation.value = NavigationCommand.Back
     }
 
     fun showLoading() {

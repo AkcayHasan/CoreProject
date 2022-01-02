@@ -15,7 +15,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun retrofitInstance(
+    fun provideRetrofit(
         retrofitBuilder: RetrofitBuilder,
         headerInterceptor: HeaderInterceptor
     ): Retrofit {

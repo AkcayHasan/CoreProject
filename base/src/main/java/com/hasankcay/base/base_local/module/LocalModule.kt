@@ -2,8 +2,8 @@ package com.hasankcay.base.base_local.module
 
 import android.content.Context
 import com.google.gson.Gson
-import com.hasankcay.base.base_local.DataStorePrefImpl
-import com.hasankcay.base.base_local.IDataStorePref
+import com.hasankcay.base.base_local.datastore.DataStorePrefImpl
+import com.hasankcay.base.base_local.datastore.IDataStorePref
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -11,5 +11,4 @@ sealed class NavigationCommand {
         NavigationCommand()
 
     object Back : NavigationCommand()
-    object Default : NavigationCommand()
 }
