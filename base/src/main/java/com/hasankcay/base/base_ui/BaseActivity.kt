@@ -12,20 +12,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.gson.Gson
+import com.hasankcay.base.base_local.datastore.DataStorePrefImpl
 import com.hasankcay.base.base_utils.BaseDialogType
 import com.hasankcay.base.base_utils.CommonUtils
 import com.hasankcay.base.base_utils.LocaleUtils
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import java.util.*
 
 abstract class BaseActivity : AppCompatActivity() {
     var progressBar: ProgressBar? = null
     private lateinit var alertDialog: AlertDialog
+    private lateinit var locale: String
 
     override fun attachBaseContext(base: Context?) {
         val localeUpdatedContext: ContextWrapper? = base?.let {
-            //val dataStorePrefImpl = DataStorePrefImpl(it, Gson())
-            val locale = "TR"
-            //val locale = dataStorePrefImpl.getLanguage()
+            val dataStorePrefImpl = DataStorePrefImpl(it, Gson())
+            CoroutineScope(Dispatchers.IO).launch {
+                dataStorePrefImpl.getLanguage().collect {
+                    withContext(Dispatchers.Main) {
+                        locale = it
+                    }
+                }
+            }
             LocaleUtils.updateLocale(
                 it,
                 Locale(locale)
@@ -110,13 +120,17 @@ abstract class BaseActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         WindowInsetsControllerCompat(window, window.decorView).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 
     private fun showSystemUI() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
-        WindowInsetsControllerCompat(window, window.decorView).show(WindowInsetsCompat.Type.systemBars())
+        WindowInsetsControllerCompat(
+            window,
+            window.decorView
+        ).show(WindowInsetsCompat.Type.systemBars())
     }
 
 

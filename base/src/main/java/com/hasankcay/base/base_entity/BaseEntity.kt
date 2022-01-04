@@ -1,3 +1,5 @@
 package com.hasankcay.base.base_entity
 
-open class BaseEntity
+import androidx.annotation.LayoutRes
+
+abstract class BaseEntity constructor(@LayoutRes val layoutId: Int = 0)

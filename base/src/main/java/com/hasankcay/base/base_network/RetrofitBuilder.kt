@@ -45,7 +45,6 @@ class RetrofitBuilder @Inject constructor(@ApplicationContext private val contex
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(clientBuilder.build())
-
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 

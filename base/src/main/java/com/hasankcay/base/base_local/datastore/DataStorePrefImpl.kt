@@ -27,19 +27,21 @@ class DataStorePrefImpl @Inject constructor(
         )
     }
 
-    private val AUTHORIZATON_PREF_HELPER = stringPreferencesKey("authorizationPref")
-    private val LANGUAGE_PREF_HELPER = stringPreferencesKey("languagePref")
-    private val USER_ID_PREF_HELPER = stringPreferencesKey("userIdPref")
-    private val PREF_KEY_LOCATION = stringPreferencesKey("PREF_KEY_LOCATION")
-    private val PREF_KEY_PHONE_NUMBER = stringPreferencesKey("PREF_KEY_PHONE_NUMBER")
+    private object PreferencesKey {
+        val AUTHORIZATION_PREF_HELPER = stringPreferencesKey("authorizationPref")
+        val LANGUAGE_PREF_HELPER = stringPreferencesKey("languagePref")
+        val USER_ID_PREF_HELPER = stringPreferencesKey("userIdPref")
+        val PREF_KEY_LOCATION = stringPreferencesKey("PREF_KEY_LOCATION")
+        val PREF_KEY_PHONE_NUMBER = stringPreferencesKey("PREF_KEY_PHONE_NUMBER")
+    }
 
-    var dataStore: DataStore<Preferences> = context.dataStore
+    private var dataStore: DataStore<Preferences> = context.dataStore
 
     override suspend fun saveAuthorizationToken(
         authorizationToken: String
     ) {
         dataStore.edit { pref ->
-            pref[AUTHORIZATON_PREF_HELPER] = authorizationToken
+            pref[PreferencesKey.AUTHORIZATION_PREF_HELPER] = authorizationToken
         }
     }
 
@@ -52,14 +54,14 @@ class DataStorePrefImpl @Inject constructor(
                     throw exception
                 }
             }.map {
-                it[AUTHORIZATON_PREF_HELPER] ?: ""
+                it[PreferencesKey.AUTHORIZATION_PREF_HELPER] ?: ""
             }
         }
     }
 
     override suspend fun saveLanguage(language: String) {
         dataStore.edit { pref ->
-            pref[LANGUAGE_PREF_HELPER] = language
+            pref[PreferencesKey.LANGUAGE_PREF_HELPER] = language
         }
     }
 
@@ -72,14 +74,14 @@ class DataStorePrefImpl @Inject constructor(
                     throw exception
                 }
             }.map {
-                it[LANGUAGE_PREF_HELPER] ?: ""
+                it[PreferencesKey.LANGUAGE_PREF_HELPER] ?: "en"
             }
         }
     }
 
     override suspend fun saveUserId(userId: String) {
         dataStore.edit {
-            it[USER_ID_PREF_HELPER] = userId
+            it[PreferencesKey.USER_ID_PREF_HELPER] = userId
         }
     }
 
@@ -92,14 +94,14 @@ class DataStorePrefImpl @Inject constructor(
                     throw exception
                 }
             }.map {
-                it[USER_ID_PREF_HELPER] ?: ""
+                it[PreferencesKey.USER_ID_PREF_HELPER] ?: ""
             }
         }
     }
 
     override suspend fun saveLocation(location: Location) {
         dataStore.edit {
-            it[PREF_KEY_LOCATION] = gson.toJson(location)
+            it[PreferencesKey.PREF_KEY_LOCATION] = gson.toJson(location)
         }
     }
 
@@ -112,7 +114,7 @@ class DataStorePrefImpl @Inject constructor(
                     throw exception
                 }
             }.map {
-                gson.fromJson(it[PREF_KEY_LOCATION], Location::class.java)
+                gson.fromJson(it[PreferencesKey.PREF_KEY_LOCATION], Location::class.java)
             }
         }
     }
@@ -125,7 +127,7 @@ class DataStorePrefImpl @Inject constructor(
 
     override suspend fun savePhoneNumber(phoneNumber: String) {
         dataStore.edit {
-            it[PREF_KEY_PHONE_NUMBER] = phoneNumber
+            it[PreferencesKey.PREF_KEY_PHONE_NUMBER] = phoneNumber
         }
     }
 
@@ -138,7 +140,7 @@ class DataStorePrefImpl @Inject constructor(
                     throw exception
                 }
             }.map {
-                it[PREF_KEY_PHONE_NUMBER] ?: ""
+                it[PreferencesKey.PREF_KEY_PHONE_NUMBER] ?: ""
             }
         }
     }
