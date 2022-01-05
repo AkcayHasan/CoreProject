@@ -1,9 +1,12 @@
 package com.hasankcay.base.base_local.module
 
 import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.google.gson.Gson
 import com.hasankcay.base.base_local.datastore.DataStorePrefImpl
 import com.hasankcay.base.base_local.datastore.IDataStorePref
+import com.hasankcay.base.base_local.roomdb.database.BaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +27,10 @@ class LocalModule {
     @Provides
     @Singleton
     fun provideGsonInstance() = Gson()
+
+    @Provides
+    @Singleton
+    fun provideBaseDatabase(@ApplicationContext context: Context): BaseDatabase {
+        return Room.databaseBuilder(context, BaseDatabase::class.java, "example.db").build()
+    }
 }

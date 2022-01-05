@@ -67,6 +67,9 @@ dependencies {
     implementation core_common_dependencies.exoPlayer
     implementation core_common_dependencies.hilt
     implementation core_common_dependencies.swipeRefresh
+    implementation core_common_dependencies.room_runtime
+    implementation core_common_dependencies.room_coroutines
+    kapt core_common_dependencies.room_compiler
     kapt core_common_dependencies.hilt_kapt
     /*
     implementation core_common_dependencies.facebook

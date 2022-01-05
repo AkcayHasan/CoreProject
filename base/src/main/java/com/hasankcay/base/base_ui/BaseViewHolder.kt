@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
-import com.hasankcay.base.base_entity.BaseEntity
+import com.hasankcay.base.base_entity.BaseDataModel
 
-abstract class BaseViewHolder<M: BaseEntity> : RecyclerView.ViewHolder {
+abstract class BaseViewHolder<M: BaseDataModel> : RecyclerView.ViewHolder {
 
     constructor(parent: ViewGroup, @LayoutRes layoutId: Int): this(
         LayoutInflater.from(parent.context).inflate(

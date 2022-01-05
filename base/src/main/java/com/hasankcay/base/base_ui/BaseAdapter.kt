@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.hasankcay.base.base_entity.BaseEntity
+import com.hasankcay.base.base_entity.BaseDataModel
 
-abstract class BaseAdapter<data : BaseEntity> : ListAdapter<data, BaseViewHolder<data>>(
+abstract class BaseAdapter<data : BaseDataModel> : ListAdapter<data, BaseViewHolder<data>>(
     ItemDiffCallback<data>()
 ) {
 
@@ -32,7 +32,7 @@ abstract class BaseAdapter<data : BaseEntity> : ListAdapter<data, BaseViewHolder
         this.onItemClick = onClick
     }
 
-    class ItemDiffCallback<T : BaseEntity> : DiffUtil.ItemCallback<T>() {
+    class ItemDiffCallback<T : BaseDataModel> : DiffUtil.ItemCallback<T>() {
         override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }

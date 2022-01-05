@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 /**
@@ -48,6 +50,27 @@ dependencies {
     implementation core_common_dependencies.constraintlayout
     implementation core_common_dependencies.navigationFragment
     implementation core_common_dependencies.navigationUi
+    implementation core_common_dependencies.lottie
+    implementation core_common_dependencies.hilt
+    implementation core_common_dependencies.swipeRefresh
+    kapt core_common_dependencies.hilt_kapt
+    implementation core_common_dependencies.retrofit
+    implementation core_common_dependencies.retrofitGsonConverter
+    implementation core_common_dependencies.retrofitLogger
+    implementation core_common_dependencies.moshi
+    implementation core_common_dependencies.moshiRetrofit
+    implementation core_common_dependencies.coroutinesCore
+    implementation core_common_dependencies.coroutinesAndroid
+    implementation core_common_dependencies.coroutinesLifecycleVM
+    implementation core_common_dependencies.coroutinesLifecycleRT
+    implementation core_common_dependencies.picasso
+    implementation core_common_dependencies.dataStore
+    implementation core_common_dependencies.material
+    implementation core_common_dependencies.splashScreen
+    implementation core_common_dependencies.room_runtime
+    implementation core_common_dependencies.room_coroutines
+    kapt core_common_dependencies.room_compiler
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

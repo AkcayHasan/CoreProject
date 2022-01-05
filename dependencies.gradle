@@ -7,6 +7,9 @@ ext {
     kotlin_version = '1.4.32'
     ktx_version = '1.6.0'
 
+    //SplashScreen
+    splash_version = '1.0.0-alpha02'
+
     //Android Core
     constraintLayout = '2.1.2'
     swipeRefreshLayout = '1.1.0'
@@ -36,6 +39,9 @@ ext {
     //Lifecycle
     lifecycleVersion = '2.0.0'
 
+    //Lottie
+    lottie_version = '3.4.0'
+
     //View
     recylerviewVersion = '1.2.1'
     cardViewVersion = '1.0.0'
@@ -50,6 +56,9 @@ ext {
 
     //DataStore
     dataStoreVersion = '1.0.0'
+
+    //Room
+    room_version = '2.4.0'
 
     //Picasso
     picassoVersion = '2.71828'
@@ -92,9 +101,14 @@ ext {
             navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$nav_version",
             navigationUi            : "androidx.navigation:navigation-ui-ktx:$nav_version",
             dataStore               : "androidx.datastore:datastore-preferences:$dataStoreVersion",
+            room_runtime            : "androidx.room:room-runtime:$room_version",
+            room_compiler           : "androidx.room:room-compiler:$room_version",
+            room_coroutines         : "androidx.room:room-ktx:$room_version",
             picasso                 : "com.squareup.picasso:picasso:$picassoVersion",
             //matisse                 : "com.zhihu.android:matisse:$matisse",
             retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            lottie                  : "com.airbnb.android:lottie:$lottie_version",
+            splashScreen            : "androidx.core:core-splashscreen:$splash_version",
             coroutinesCore          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion",
             coroutinesAndroid       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion",
             coroutinesLifecycleVM   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutineLifecycleVersion",
@@ -119,7 +133,6 @@ ext {
             //twitter_ui              : "com.twitter.sdk.android:tweet-ui:$twitterSdkVersion",
             //twitter_composer        : "com.twitter.sdk.android:tweet-composer:$twitterSdkVersion",
             //google_auth             : "com.google.android.gms:play-services-auth:$googleAuthVersion"
-
     ]
 
 
