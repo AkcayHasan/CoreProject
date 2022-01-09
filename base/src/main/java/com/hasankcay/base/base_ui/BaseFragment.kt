@@ -1,5 +1,6 @@
 package com.hasankcay.base.base_ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,9 +50,9 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         }
     }
 
-    private fun setOnClickItems() {}
+    open fun setOnClickItems() {}
 
-    private fun initUI(
+    open fun initUI(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?

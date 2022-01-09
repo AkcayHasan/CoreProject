@@ -3,12 +3,9 @@ ext {
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 31
     androidCompileSdkVersion = 31
-    buildToolsVersion = '28.0.3'
-    kotlin_version = '1.4.32'
+    buildToolsVersion = '30.0.3'
+    kotlin_version = "1.5.21"
     ktx_version = '1.6.0'
-
-    //SplashScreen
-    splash_version = '1.0.0-alpha02'
 
     //Android Core
     constraintLayout = '2.1.2'
@@ -66,6 +63,9 @@ ext {
     //Matisse
     //matisse = '0.5.3-beta3'
 
+    //Timber
+    timber_version = '5.0.1'
+
     //Hilt
     hilt_version = '2.38.1'
 
@@ -108,7 +108,7 @@ ext {
             //matisse                 : "com.zhihu.android:matisse:$matisse",
             retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             lottie                  : "com.airbnb.android:lottie:$lottie_version",
-            splashScreen            : "androidx.core:core-splashscreen:$splash_version",
+            timber                  : "com.jakewharton.timber:timber:$timber_version",
             coroutinesCore          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion",
             coroutinesAndroid       : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion",
             coroutinesLifecycleVM   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutineLifecycleVersion",

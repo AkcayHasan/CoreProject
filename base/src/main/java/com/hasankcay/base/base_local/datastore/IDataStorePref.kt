@@ -14,7 +14,7 @@ interface IDataStorePref {
     /**
      * Kaydedilen authorization keyi döner
      */
-    suspend fun getAuthorizationToken(): Flow<String>
+    suspend fun getAuthorizationToken(): String
 
     /**
      * Değiştirilmek istenen language'i kaydetmek için kullanılır
@@ -25,7 +25,7 @@ interface IDataStorePref {
     /**
      * Kaydedilen language'i döner
      */
-    suspend fun getLanguage(): Flow<String>
+    suspend fun getLanguage(): String
 
     /**
      * User id'yi kaydetmek için kullanılır
@@ -36,7 +36,7 @@ interface IDataStorePref {
     /**
      * Kaydedilen user id'yi döner
      */
-    suspend fun getUserId(): Flow<String>
+    suspend fun getUserId(): String
 
     /**
      * Kullanıcının lokasyonunu kaydetmek için kullanılır
@@ -47,7 +47,7 @@ interface IDataStorePref {
     /**
      * Kaydedilen son lokasyonu geri döner
      */
-    suspend fun getLocation(): Flow<Location>
+    suspend fun getLocation(): Location
 
     /**
      * Tüm kaydedilen değerleri silmek için kullanılır
@@ -63,6 +63,6 @@ interface IDataStorePref {
     /**
      * Kaydedilen telefon numarasını döner
      */
-    suspend fun getPhoneNumber(): Flow<String>
+    suspend fun getPhoneNumber(): String
 
 }

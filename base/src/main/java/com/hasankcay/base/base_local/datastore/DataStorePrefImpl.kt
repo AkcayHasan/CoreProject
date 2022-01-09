@@ -3,16 +3,14 @@ package com.hasankcay.base.base_local.datastore
 import android.content.Context
 import android.location.Location
 import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import java.io.IOException
 import javax.inject.Inject
 
@@ -45,18 +43,16 @@ class DataStorePrefImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAuthorizationToken(): Flow<String> {
-        return flow {
-            dataStore.data.catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }.map {
-                it[PreferencesKey.AUTHORIZATION_PREF_HELPER] ?: ""
+    override suspend fun getAuthorizationToken(): String {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
             }
-        }
+        }.map {
+            it[PreferencesKey.AUTHORIZATION_PREF_HELPER]
+        }.first() ?: ""
     }
 
     override suspend fun saveLanguage(language: String) {
@@ -65,18 +61,16 @@ class DataStorePrefImpl @Inject constructor(
         }
     }
 
-    override suspend fun getLanguage(): Flow<String> {
-        return flow {
-            dataStore.data.catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }.map {
-                it[PreferencesKey.LANGUAGE_PREF_HELPER] ?: "en"
+    override suspend fun getLanguage(): String {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
             }
-        }
+        }.map {
+            it[PreferencesKey.LANGUAGE_PREF_HELPER]
+        }.first() ?: "en"
     }
 
     override suspend fun saveUserId(userId: String) {
@@ -85,18 +79,17 @@ class DataStorePrefImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserId(): Flow<String> {
-        return flow {
-            dataStore.data.catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }.map {
-                it[PreferencesKey.USER_ID_PREF_HELPER] ?: ""
+
+    override suspend fun getUserId(): String {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
             }
-        }
+        }.map {
+            it[PreferencesKey.USER_ID_PREF_HELPER]
+        }.first() ?: ""
     }
 
     override suspend fun saveLocation(location: Location) {
@@ -105,18 +98,17 @@ class DataStorePrefImpl @Inject constructor(
         }
     }
 
-    override suspend fun getLocation(): Flow<Location> {
-        return flow {
-            dataStore.data.catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }.map {
-                gson.fromJson(it[PreferencesKey.PREF_KEY_LOCATION], Location::class.java)
+    override suspend fun getLocation(): Location {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
             }
-        }
+        }.map {
+            gson.fromJson(it[PreferencesKey.PREF_KEY_LOCATION], Location::class.java)
+        }.first() ?: Location("")
+
     }
 
     override suspend fun logout() {
@@ -131,18 +123,17 @@ class DataStorePrefImpl @Inject constructor(
         }
     }
 
-    override suspend fun getPhoneNumber(): Flow<String> {
-        return flow {
-            dataStore.data.catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }.map {
-                it[PreferencesKey.PREF_KEY_PHONE_NUMBER] ?: ""
+    override suspend fun getPhoneNumber(): String {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) {
+                emit(emptyPreferences())
+            } else {
+                throw exception
             }
-        }
+        }.map {
+            it[PreferencesKey.PREF_KEY_PHONE_NUMBER]
+        }.first() ?: ""
+
     }
 
 

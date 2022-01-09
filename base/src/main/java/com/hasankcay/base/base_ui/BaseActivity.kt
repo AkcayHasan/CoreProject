@@ -29,12 +29,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context?) {
         val localeUpdatedContext: ContextWrapper? = base?.let {
             val dataStorePrefImpl = DataStorePrefImpl(it, Gson())
-            CoroutineScope(Dispatchers.IO).launch {
-                dataStorePrefImpl.getLanguage().collect {
-                    withContext(Dispatchers.Main) {
-                        locale = it
-                    }
-                }
+            runBlocking {
+                locale = dataStorePrefImpl.getLanguage()
             }
             LocaleUtils.updateLocale(
                 it,
@@ -44,7 +40,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.attachBaseContext(localeUpdatedContext ?: base)
     }
 
-    fun changeLanguage(language: String) {
+    open fun changeLanguage(language: String) {
         LocaleUtils.updateLocale(this, Locale(language))
         overridePendingTransition(0, 0)
     }

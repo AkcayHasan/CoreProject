@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 /**
@@ -12,6 +13,7 @@ apply from: '../dependencies.gradle'
 
 android {
     compileSdk core_common_dependencies.androidCompileSdkVersion
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.hasankcay.coreproject"
@@ -53,6 +55,7 @@ dependencies {
     implementation core_common_dependencies.lottie
     implementation core_common_dependencies.hilt
     implementation core_common_dependencies.swipeRefresh
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt core_common_dependencies.hilt_kapt
     implementation core_common_dependencies.retrofit
     implementation core_common_dependencies.retrofitGsonConverter
@@ -66,7 +69,7 @@ dependencies {
     implementation core_common_dependencies.picasso
     implementation core_common_dependencies.dataStore
     implementation core_common_dependencies.material
-    implementation core_common_dependencies.splashScreen
+    implementation core_common_dependencies.timber
     implementation core_common_dependencies.room_runtime
     implementation core_common_dependencies.room_coroutines
     kapt core_common_dependencies.room_compiler

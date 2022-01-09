@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/bottom_nav_main_icon"
+        android:menuCategory="secondary"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/favouriteFragment"
+        android:icon="@drawable/bottom_nav_favourite_icon"
+        android:menuCategory="secondary"
+        android:title="@string/favourite" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/bottom_nav_profile_icon"
+        android:menuCategory="secondary"
+        android:title="@string/profile" />
+
+</menu>

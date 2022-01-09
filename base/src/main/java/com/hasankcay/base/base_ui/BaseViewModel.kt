@@ -9,7 +9,7 @@ import com.hasankcay.base.base_network.SingleLiveEvent
 import com.hasankcay.base.base_utils.PopupListener
 import com.hasankcay.base.base_utils.PopupModel
 
-class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel() {
 
     private val _loading = SingleLiveEvent<Boolean>()
     val loading: LiveData<Boolean> = _loading

@@ -20,7 +20,7 @@ class HeaderInterceptor @Inject constructor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         CoroutineScope(Dispatchers.Main).launch {
-            authToken = DataStorePrefImpl(context, Gson()).getAuthorizationToken().first()
+            authToken = DataStorePrefImpl(context, Gson()).getAuthorizationToken()
         }
 
         var request = chain.request()
