@@ -1,15 +1,15 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
-    id 'androidx.navigation.safeargs.kotlin'
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 /**
  * All dependencies are managed from here..
  */
-apply from: '../dependencies.gradle'
+apply from: "../dependencies.gradle"
 
 android {
     compileSdk core_common_dependencies.androidCompileSdkVersion
@@ -28,7 +28,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -36,7 +36,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
 
     buildFeatures {
@@ -55,7 +55,7 @@ dependencies {
     implementation core_common_dependencies.lottie
     implementation core_common_dependencies.hilt
     implementation core_common_dependencies.swipeRefresh
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     kapt core_common_dependencies.hilt_kapt
     implementation core_common_dependencies.retrofit
     implementation core_common_dependencies.retrofitGsonConverter
@@ -75,9 +75,9 @@ dependencies {
     kapt core_common_dependencies.room_compiler
 
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 
-    api project(':base')
+    api project(":base")
 }

@@ -6,6 +6,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CoreProject"
-include ':app'
-include ':base'
-
+include(":app", ":base")
