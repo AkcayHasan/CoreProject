@@ -3,20 +3,22 @@ package com.hasankcay.base.base_local.datastore
 import android.content.Context
 import android.location.Location
 import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.google.gson.Gson
-import kotlinx.coroutines.flow.*
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
 class DataStorePrefImpl @Inject constructor(
     context: Context,
-    private val gson: Gson
+    moshi: Moshi
 ) : IDataStorePref {
 
     companion object {
@@ -34,6 +36,7 @@ class DataStorePrefImpl @Inject constructor(
     }
 
     private var dataStore: DataStore<Preferences> = context.dataStore
+    private val adapter: JsonAdapter<Location> = moshi.adapter(Location::class.java)
 
     override suspend fun saveAuthorizationToken(
         authorizationToken: String
@@ -94,7 +97,7 @@ class DataStorePrefImpl @Inject constructor(
 
     override suspend fun saveLocation(location: Location) {
         dataStore.edit {
-            it[PreferencesKey.PREF_KEY_LOCATION] = gson.toJson(location)
+            it[PreferencesKey.PREF_KEY_LOCATION] = adapter.toJson(location)
         }
     }
 
@@ -106,7 +109,11 @@ class DataStorePrefImpl @Inject constructor(
                 throw exception
             }
         }.map {
-            gson.fromJson(it[PreferencesKey.PREF_KEY_LOCATION], Location::class.java)
+            it[PreferencesKey.PREF_KEY_LOCATION]?.let { locationString ->
+                kotlin.runCatching {
+                    adapter.fromJson(locationString)
+                }.getOrNull()
+            }
         }.first() ?: Location("")
 
     }

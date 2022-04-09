@@ -1,12 +1,11 @@
 package com.hasankcay.base.base_network
 
 import android.content.Context
-import com.google.gson.Gson
 import com.hasankcay.base.base_local.datastore.DataStorePrefImpl
+import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -18,9 +17,12 @@ class HeaderInterceptor @Inject constructor(
 
     private var authToken: String? = null
 
+    @Inject
+    lateinit var moshi: Moshi
+
     override fun intercept(chain: Interceptor.Chain): Response {
         CoroutineScope(Dispatchers.Main).launch {
-            authToken = DataStorePrefImpl(context, Gson()).getAuthorizationToken()
+            authToken = DataStorePrefImpl(context, moshi).getAuthorizationToken()
         }
 
         var request = chain.request()
@@ -32,7 +34,5 @@ class HeaderInterceptor @Inject constructor(
             .build()
 
         return chain.proceed(request)
-
     }
-
 }

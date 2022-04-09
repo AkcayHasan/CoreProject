@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSdkVersion)
-    buildToolsVersion(Versions.buildToolsVersion)
+    compileSdk = Versions.androidCompileSdkVersion
+    buildToolsVersion = Versions.buildToolsVersion
 
     defaultConfig {
         applicationId = "com.hasankcay.coreproject"
-        minSdkVersion(Versions.androidMinSdkVersion)
-        targetSdkVersion(Versions.androidTargetSdkVersion)
+        minSdk = Versions.androidMinSdkVersion
+        targetSdk = Versions.androidTargetSdkVersion
         versionCode = 1
         versionName = "1.0"
 

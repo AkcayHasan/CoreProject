@@ -1,6 +1,7 @@
 package com.hasankcay.base.base_network
 
 import android.content.Context
+import com.hasankcay.base.BuildConfig
 import com.hasankcay.base.base_utils.HttpClient
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
@@ -19,7 +20,6 @@ class RetrofitBuilder @Inject constructor(@ApplicationContext private val contex
     private var connectionTimeout = HttpClient.CONNECT_TIMEOUT
     private var writeTimeout = HttpClient.WRITE_TIMEOUT
     private var readTimeout = HttpClient.READ_TIMEOUT
-    private var baseUrl: String = "https://api.github.com/"
 
     fun addInterceptors(vararg interceptor: Interceptor): RetrofitBuilder {
         interceptors.addAll(interceptor)
@@ -43,7 +43,7 @@ class RetrofitBuilder @Inject constructor(@ApplicationContext private val contex
         }
 
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(clientBuilder.build())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()

@@ -1,8 +1,6 @@
 package com.hasankcay.base.base_local.datastore
 
 import android.location.Location
-import kotlinx.coroutines.flow.Flow
-
 
 interface IDataStorePref {
     /**

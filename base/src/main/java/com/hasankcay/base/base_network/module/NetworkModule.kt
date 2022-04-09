@@ -2,6 +2,7 @@ package com.hasankcay.base.base_network.module
 
 import com.hasankcay.base.base_network.HeaderInterceptor
 import com.hasankcay.base.base_network.RetrofitBuilder
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

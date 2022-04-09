@@ -1,6 +1,5 @@
 package com.hasankcay.base.base_ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
-import com.hasankcay.base.base_utils.Popup
 
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
 
@@ -33,21 +31,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding> : Fragment() {
         initUI(inflater, container, savedInstanceState)
         setOnClickItems()
 
-        subscribeObservers()
-
         return binding.root
-    }
-
-    private fun subscribeObservers() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.loading.observe(viewLifecycleOwner) {
-                if (it) baseActivity?.showLoading() else baseActivity?.hideLoading()
-            }
-
-            viewModel.failurePopup.observe(viewLifecycleOwner) {
-                Popup(binding.root.context, it)
-            }
-        }
     }
 
     open fun setOnClickItems() {}

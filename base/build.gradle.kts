@@ -6,18 +6,29 @@ plugins {
 }
 
 android {
-    compileSdkVersion (Versions.androidCompileSdkVersion)
-    buildToolsVersion (Versions.buildToolsVersion)
+    compileSdk = Versions.androidCompileSdkVersion
+    buildToolsVersion = Versions.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion (Versions.androidMinSdkVersion)
-        targetSdkVersion (Versions.androidTargetSdkVersion)
+        minSdk = Versions.androidMinSdkVersion
+        targetSdk = Versions.androidTargetSdkVersion
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
         }
     }
 
