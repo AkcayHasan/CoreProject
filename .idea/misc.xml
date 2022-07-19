@@ -15,7 +15,11 @@
         <entry key="..\:/Users/mehmethasan/Desktop/projects/CoreProject/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/mehmethasan/Desktop/projects/CoreProject/app/src/main/res/layout/fragment_profile.xml" value="0.371875" />
         <entry key="..\:/Users/mehmethasan/Desktop/projects/CoreProject/app/src/main/res/menu/bottom_nav.xml" value="0.371875" />
+        <entry key="app/src/main/res/layout/activity_host.xml" value="0.3234375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3171875" />
+        <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.3234375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3375" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3375" />
       </map>
     </option>
   </component>
